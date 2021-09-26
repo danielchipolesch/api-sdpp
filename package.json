@@ -1,0 +1,31 @@
+{
+  "name": "contracheque",
+  "version": "1.0.0",
+  "description": "API para gerar o contracheque FAB em PDF de forma padronizada.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chipoleschdaca/contracheque-fab.git"
+  },
+  "author": "Daniel Chipolesch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chipoleschdaca/contracheque-fab/issues"
+  },
+  "homepage": "https://github.com/chipoleschdaca/contracheque-fab#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "consign": "^0.1.6",
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
