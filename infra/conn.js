@@ -1,7 +1,5 @@
 const mysql = require('mysql');
 
-const ano = '2021';
-
 const conn = mysql.createConnection({
   host: 'localhost',
   port: 3306,
