@@ -45,7 +45,7 @@
 
 <h2 align="left" id="tecnologias">🛠 Tecnologias</h2>
 
-![image](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![image](https://badges.aleen42.com/src/javascript.svg) ![image](https://badges.aleen42.com/src/node.svg)
 
 ```
 # Para saber a versão do Node.js
@@ -57,4 +57,5 @@ $ npm -v
 v6.14.12 (já vem instalado junto com o node)
 ```
 <h2 align="left" id="licenca">📝 Licença</h2>
-<p>Este projeto está sob licença <a href="https://opensource.org/licenses/MIT">MIT</a></p>
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
