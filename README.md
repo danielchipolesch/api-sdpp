@@ -3,11 +3,10 @@
 
 <!--ts-->   
    * [Título](#titulo)
-   * [Descrição](#descricao)
-   * [Badges](#badges)
+   * [Descrição](#descricao)   
    * [Status do Projeto](#status)
    * [Features](#features)
-   * [Ideias Futuras](#future-ideas)
+   * [Ideias](#ideias)
    * [Aplicação](#aplicacao)
       * [Pré Requisitos](#pre-requisitos)
       * [Local files](#local-files)
@@ -32,15 +31,17 @@
 
 <h2 align="left" id="features">🧭 Features</h2>
 
-- [x] Cadastro de usuário
-- [x] Cadastro de cliente
-- [ ] \ Cadastro de produtos
+- [x] Projeto inicial
+- [x] Conexão com o BD
+- [x] Criação do endpoint
+- [ ] Arquitetura MVC
+- [ ] Loop para conexão em diferentes BD
 
-<h2 align="left" id="future-ideas">💡 Ideias Futuras</h2>
+<h2 align="left" id="ideias">💡 Ideias</h2>
 
-- [x] Cadastro de usuário
-- [x] Cadastro de cliente
-- [ ] \ Cadastro de produtos
+- [ ] Centralização das API da SDPP
+- [ ] Cadastro de cliente
+- [ ] Cadastro de produtos
 
 <h2 align="left" id="tecnologias">🛠 Tecnologias</h2>
 
@@ -57,6 +58,3 @@ v6.14.12 (já vem instalado junto com o node)
 ```
 <h2 align="left" id="licenca">📝 Licença</h2>
 <p>Este projeto está sob licença <a href="https://opensource.org/licenses/MIT">MIT</a></p>
-
-<h2 align="left" id="emoji">😏 Repositório de Emoji</h2>
-<p>Para acessa o repositório, clique <a href="https://gist.github.com/rxaviers/7360908">aqui</a></p>
