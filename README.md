@@ -1,5 +1,6 @@
 ![logo dirad 3d](https://user-images.githubusercontent.com/58316637/135005180-607cf677-2e1e-4a16-8bc9-e87ce0e0e4a7.png)
-## Sumário
+<h2>📋 Sumário</h2>
+
 <!--ts-->   
    * [Título](#titulo)
    * [Descrição](#descricao)
@@ -29,7 +30,7 @@
 	🚧  API para buscar contracheque 🚀 Em construção...  🚧
 </h3>
 
-<h2 align="left" id="features">🎲 Features</h2>
+<h2 align="left" id="features">🧭 Features</h2>
 
 - [x] Cadastro de usuário
 - [x] Cadastro de cliente
@@ -42,7 +43,8 @@
 - [ ] \ Cadastro de produtos
 
 <h2 align="left" id="tecnologias">🛠 Tecnologias</h2>
-<p>Inserir</p>
+
+![image](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
 ```
 # Para saber a versão do Node.js
@@ -53,3 +55,8 @@ v14.16.1
 $ npm -v
 v6.14.12 (já vem instalado junto com o node)
 ```
+<h2 align="left" id="licenca">📝 Licença</h2>
+<p>Este projeto está sob licença <a href="https://opensource.org/licenses/MIT">MIT</a></p>
+
+<h2 align="left" id="emoji">😏 Repositório de Emoji</h2>
+<p>Para acessa o repositório, clique <a href="https://gist.github.com/rxaviers/7360908">aqui</a></p>
