@@ -38,36 +38,3 @@ app.use((error, req, res, next) => {
 });
 
 module.exports = app;
-
-
-
-
-
-
-
-
-const consign = require('consign');
-const conn = require('./api/infra/conn');
-const Tabelas = require('./api/infra/tables');
-
-/*
-app.use(bodyParser.json());
-
-conn.connect((err) => {
-  if(err) {
-    console.log(err);
-  } else {
-    app.listen(PORT, () => console.log("Servidor rodando na porta " + PORT));
-    console.log('Conectado com sucesso.');
-    Tabelas.init(conn);
-  }
-})
-
-
-consign()
-  .include('controllers')
-  .include('infra')  
-  .into(app)
-const PORT = 3000;
-
-*/
