@@ -25,15 +25,15 @@
 <h2 align="center" id="descricao">Descrição do Projeto</h2>
 <p align="left">Descrição do Projeto</p>
 
-<h3 align="center"> 
+<h2 align="left"> 
 	🚧  API para buscar contracheque 🚀 Em construção...  🚧
-</h3>
+</h2>
 
 <h2 align="left" id="features">🧭 Features</h2>
 
 - [x] Projeto inicial
 - [x] Conexão com o BD
-- [x] Criação do endpoint
+- [x] Criação do endpoint que retorna os dados do contracheque em JSON
 - [ ] Arquitetura MVC
 - [ ] Loop para conexão em diferentes BD
 
@@ -41,7 +41,6 @@
 
 - [ ] Centralização das API da SDPP
 - [ ] Cadastro de cliente
-- [ ] Cadastro de produtos
 
 <h2 align="left" id="tecnologias">🛠 Tecnologias</h2>
 
