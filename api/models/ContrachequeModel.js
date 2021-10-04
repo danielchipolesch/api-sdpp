@@ -1,6 +1,6 @@
 const connection = require('../infra/conn');
 const GeraPdfModel = require('./GeraPdfModel');
-const Sql = require('../middlewares/query')
+const Sql = require('../middlewares/Query')
 
 class ContrachequeModel {
 
