@@ -8,8 +8,7 @@ class GeraPdfModel {
     connection.query(sql, (err, result, fields) => {
       if (err) {
         res.status(500).json(err);
-      } else {
-                
+      } else {                
         const nordem = result[0].nordem;
         const df = result[0].digito;
         const cpf = result[0].cpf;
@@ -102,9 +101,21 @@ class GeraPdfModel {
             ]
           },
           content: [
-            // { image: 'api/src/img/DOM-SEFA.png', alignment: 'left' },
-            // { image: 'api/src/img/gladio.png', alignment: 'center' },
-            // { image: 'api/src/img/DOM-DIRAD.png', alignment: 'center' },            
+            { layout: 'noBorders',
+              table:
+              {                
+                headerRows: 1,
+                widths: [ 'auto', '*', 'auto'],
+                body: [
+                  [ 
+                    { image: 'api/src/img/DOM-SEFA.png', alignment: 'center', width: 49.58, height: 60 },
+                    { image: 'api/src/img/gladio.png', alignment: 'center', width: 82.19, height: 60 },
+                    { image: 'api/src/img/DOM-DIRAD.png', alignment: 'center', width: 49.58, height: 60 },
+                  ],
+                ]
+              }, 
+            },
+            
             { text: 'MINISTÉRIO DA DEFESA', bold : true, alignment : 'center', lineHeight: 1.1},
             { text: 'COMANDO DA AERONÁUTICA', alignment : 'center', lineHeight: 1.1},
             { text: 'SECRETARIA DE ECONOMIA, FINANÇAS E ADMINISTRAÇÃO DA AERONÁUTICA', decoration : 'underline', alignment : 'center', lineHeight: 1.3},
