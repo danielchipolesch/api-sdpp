@@ -1,4 +1,4 @@
-const ContrachequesModel = require('../models/contrachequesModel');
+const ContrachequeModel = require('../models/ContrachequeModel');
 
 class ContrachequeController {
 
@@ -9,14 +9,13 @@ class ContrachequeController {
   }
 
   getUmContracheque = (req, res, next) => {
-    const ano = req.params.ano;
-    const mes = req.params.mes;
-    const nordem = req.params.nordem;
-    ContrachequesModel.getUmContracheque(ano, mes, nordem, res);
+    const params = req.params;
+    ContrachequeModel.getUmContracheque(params, res);    
   }
 
-  geraContrachequePdf = (req, res, next) => {
-    
+  getContrachequePdf = (req, res, next) => {
+    const params = req.params;
+    ContrachequeModel.geraUmContrachequePdf(params, res);
   }
 }
 
