@@ -25,7 +25,7 @@ class ContrachequeModel {
     const nordem = params.nordem;
     const sql = `SELECT p.tipo, p.posto, p.nordem, p.status, p.digito, p.ompag, p.nomeom AS nm_ompag, p.subom, p.dt, p.nposto, p.esp, p.nome AS nm_pessoa, p.ref, p.id, p.cpf, p.banco, p.agencia, p.cc, p.receita, p.despesa, p.liquido, p.anuenio, p.pasep, p.depir, p.depsf, p.quota, p.pm, p.funsa, p.isir, p.margem, c.discr, c.ordcx, c.caixa, c.perc, c.rec, c.desp, c.prazo, c.ir, u.codtabela, u.autonomia, u.filler1, u.nome AS nm_subom, u.sigla AS nm_sigla_subom, u.localidade, u.filler2 FROM ${mes}_pessoais p INNER JOIN ${mes}_caixas c ON p.nordem=c.nordem INNER JOIN ${mes}_unidades u ON p.subom=u.unidade WHERE p.nordem=${nordem}`;
 
-    connection.query(sql, (err, result, fields) => {
+    connection(ano).query(sql, (err, result, fields) => {
       if(err){
         res.status(500).json(err);
       } else {
@@ -40,39 +40,12 @@ class ContrachequeModel {
     const nordem = params.nordem;
     const sql = `SELECT p.tipo, p.posto, p.nordem, p.status, p.digito, p.ompag, p.nomeom AS nm_ompag, p.subom, p.dt, p.nposto, p.esp, p.nome AS nm_pessoa, p.ref, p.id, p.cpf, p.banco, p.agencia, p.cc, p.receita, p.despesa, p.liquido, p.anuenio, p.pasep, p.depir, p.depsf, p.quota, p.pm, p.funsa, p.isir, p.margem, c.discr, c.ordcx, c.caixa, c.perc, c.rec, c.desp, c.prazo, c.ir, u.codtabela, u.autonomia, u.filler1, u.nome AS nm_subom, u.sigla AS nm_sigla_subom, u.localidade, u.filler2 FROM ${mes}_pessoais p INNER JOIN ${mes}_caixas c ON p.nordem=c.nordem INNER JOIN ${mes}_unidades u ON p.subom=u.unidade WHERE p.nordem=${nordem}`;
 
-    connection.query(sql, (err, result, fields) => {
+    connection(ano).query(sql, (err, result, fields) => {
       if (err) {
         res.status(500).json(err);
-      } else {                
-        const {nordem} = result[0];
-        const df = result[0].digito;
-        const {cpf} = result[0];
-        const {ompag} = result[0];
-        const {nm_ompag} = result[0];
-        const {subom} = result[0];
-        const nome_subom = result[0].nm_sigla_subom;
-        const competencia = result[0].dt;
-        const {nposto} = result[0];
-        const {esp} = result[0];
-        const {nm_pessoa} = result[0];
-        const {ref} = result[0];
-        const {id} = result[0];
-        const {banco} = result[0];
-        const {agencia} = result[0];
-        const conta = result[0].cc;
-        const {receita} = result[0];
-        const {despesa} = result[0];
-        const {liquido} = result[0];
-        const {anuenio} = result[0];
-        const {pasep} = result[0];
-        const dep_ir = result[0].depir;
-        const dep_sf = result[0].depsf;
-        const cota = result[0].quota;
-        const {pm} = result[0];
-        const {funsa} = result[0];
-        const {isir} = result[0];
-        const {status} = result[0];
-
+      } else {         
+        const {nordem, digito, cpf, ompag, nm_ompag, subom, nm_sigla_subom, dt, nposto, esp, nm_pessoa, ref, id, banco, agencia, cc, receita, despesa, liquido, anuenio, pasep, depir, depsf, quota, pm, funsa, isir, status} = result[0];
+                
         var dado = [
           [ 
             { text : 'DESCRIÇÃO', alignment : 'center', border: [true, false, true, false]},
@@ -113,7 +86,7 @@ class ContrachequeModel {
         
         var docDefinition = {
           info: {
-            title: `SARAM ${nordem}-${df}`,
+            title: `SARAM ${nordem}-${digito}`,
             author: '1º Ten Int CHIPOLESCH',
             subject: 'Gerador de contracheques da FAB em formato PDF',           
             },
@@ -175,13 +148,13 @@ class ContrachequeModel {
                     { text : 'COMPETÊNCIA', alignment : 'center', border: [true, true, true, false]},
                   ],
                   [ 
-                    { text : `${nordem}-${df}`, alignment : 'center', colSpan : 2, border: [true, false, true, true]},
+                    { text : `${nordem}-${digito}`, alignment : 'center', colSpan : 2, border: [true, false, true, true]},
                     { text : '', alignment : 'center', border: [true, false, true, true]},
                     { text : ompag, alignment : 'center', border: [true, false, true, true]},
                     { text : nm_ompag, alignment : 'center', border: [true, false, true, true]},                    
                     { text : subom, alignment : 'center', border: [true, false, true, true]},
-                    { text : nome_subom, alignment : 'center', border: [true, false, true, true]},
-                    { text : competencia, alignment : 'center', border: [true, false, true, true]},                   
+                    { text : nm_sigla_subom, alignment : 'center', border: [true, false, true, true]},
+                    { text : dt, alignment : 'center', border: [true, false, true, true]},
                   ],
                   [ 
                     { text : 'P/G', alignment : 'center', border: [true, false, true, false]},
@@ -251,7 +224,7 @@ class ContrachequeModel {
                   [ 
                     { text : banco, alignment : 'center', border: [true, false, true, true]},
                     { text : agencia, alignment : 'center', border: [true, false, true, true]},
-                    { text : conta, alignment : 'center', border: [true, false, true, true]},
+                    { text : cc, alignment : 'center', border: [true, false, true, true]},
                     { text : receita, alignment : 'center', border: [true, false, true, true]},
                     { text : despesa, alignment : 'center', border: [true, false, true, true]},
                     { text : liquido, alignment : 'center', border: [true, false, true, true]}, 
@@ -290,9 +263,9 @@ class ContrachequeModel {
                   [ 
                     { text : anuenio, alignment : 'center', border: [true, false, true, true]},
                     { text : pasep, alignment : 'center', border: [true, false, true, true]},
-                    { text : dep_ir, alignment : 'center', border: [true, false, true, true]},
-                    { text : dep_sf, alignment : 'center', border: [true, false, true, true]},
-                    { text : cota, alignment : 'center', border: [true, false, true, true]},
+                    { text : depir, alignment : 'center', border: [true, false, true, true]},
+                    { text : depsf, alignment : 'center', border: [true, false, true, true]},
+                    { text : quota, alignment : 'center', border: [true, false, true, true]},
                     { text : pm, alignment : 'center', border: [true, false, true, true]},
                     { text : funsa, alignment : 'center', border: [true, false, true, true]},
                     { text : isir, alignment : 'center', border: [true, false, true, true]},
