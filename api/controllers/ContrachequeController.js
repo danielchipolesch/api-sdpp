@@ -8,14 +8,14 @@ class ContrachequeController {
     })
   }
 
-  getUmContracheque = async (req, res, next) => {
+  getUmContracheque = (req, res, next) => {
     const params = req.params;
-    await ContrachequeModel.findOne(params, res);
+    ContrachequeModel.findOne(params, res);
   }
 
-  getContrachequePdf = async (req, res, next) => {
+  getContrachequePdf = (req, res, next) => {
     const params = req.params;
-    await ContrachequeModel.geraUmContrachequePdf(params, res);
+    ContrachequeModel.geraUmContrachequePdf(params, res);
   }
 }
 

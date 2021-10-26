@@ -1,16 +1,21 @@
-const connection = require('../infra/conn');
-// const ContrachequeDao = require('../infra/persistence/ContrachequeDao');
+const Connection = require('../infra/conn');
 var PdfPrinter = require('pdfmake');
 
 class ContrachequeModel {
-
+  constructor(){
+    this.DB = new Connection;
+  }
+  
   getContracheques(params, res){
+    const ano = params.ano;
+    const mes = params.mes;
+    const nordem = params.nordem;
     for (i = anoInicio; anoInicio <= i <= anoFim; i++){
       for (j = mesInicio; mesInicio <= j <= mesFim; j++){
-        const sql = Sql.selectVariosContracheques(params);        
+        const sql = `SELECT p.tipo, p.posto, p.nordem, p.status, p.digito, p.ompag, p.nomeom AS nm_ompag, p.subom, p.dt, p.nposto, p.esp, p.nome AS nm_pessoa, p.ref, p.id, p.cpf, p.banco, p.agencia, p.cc, p.receita, p.despesa, p.liquido, p.anuenio, p.pasep, p.depir, p.depsf, p.quota, p.pm, p.funsa, p.isir, p.margem, c.discr, c.ordcx, c.caixa, c.perc, c.rec, c.desp, c.prazo, c.ir, u.codtabela, u.autonomia, u.filler1, u.nome AS nm_subom, u.sigla AS nm_sigla_subom, u.localidade, u.filler2 FROM ${mes}_pessoais p INNER JOIN ${mes}_caixas c ON p.nordem=c.nordem INNER JOIN ${mes}_unidades u ON p.subom=u.unidade WHERE p.nordem=${nordem}`;        
       }      
     }
-    connection.query(sql, [i, j], (err, result, fields) => {
+    this.DB.mysqlConnection(ano).query(sql, [i, j], (err, result, fields) => {
       if(err){
         res.status(500).json(err);
       } else {
@@ -25,7 +30,7 @@ class ContrachequeModel {
     const nordem = params.nordem;
     const sql = `SELECT p.tipo, p.posto, p.nordem, p.status, p.digito, p.ompag, p.nomeom AS nm_ompag, p.subom, p.dt, p.nposto, p.esp, p.nome AS nm_pessoa, p.ref, p.id, p.cpf, p.banco, p.agencia, p.cc, p.receita, p.despesa, p.liquido, p.anuenio, p.pasep, p.depir, p.depsf, p.quota, p.pm, p.funsa, p.isir, p.margem, c.discr, c.ordcx, c.caixa, c.perc, c.rec, c.desp, c.prazo, c.ir, u.codtabela, u.autonomia, u.filler1, u.nome AS nm_subom, u.sigla AS nm_sigla_subom, u.localidade, u.filler2 FROM ${mes}_pessoais p INNER JOIN ${mes}_caixas c ON p.nordem=c.nordem INNER JOIN ${mes}_unidades u ON p.subom=u.unidade WHERE p.nordem=${nordem}`;
 
-    connection(ano).query(sql, (err, result, fields) => {
+    this.DB.mysqlConnection(ano).query(sql, (err, result, fields) => {
       if(err){
         res.status(500).json(err);
       } else {
@@ -40,7 +45,7 @@ class ContrachequeModel {
     const nordem = params.nordem;
     const sql = `SELECT p.tipo, p.posto, p.nordem, p.status, p.digito, p.ompag, p.nomeom AS nm_ompag, p.subom, p.dt, p.nposto, p.esp, p.nome AS nm_pessoa, p.ref, p.id, p.cpf, p.banco, p.agencia, p.cc, p.receita, p.despesa, p.liquido, p.anuenio, p.pasep, p.depir, p.depsf, p.quota, p.pm, p.funsa, p.isir, p.margem, c.discr, c.ordcx, c.caixa, c.perc, c.rec, c.desp, c.prazo, c.ir, u.codtabela, u.autonomia, u.filler1, u.nome AS nm_subom, u.sigla AS nm_sigla_subom, u.localidade, u.filler2 FROM ${mes}_pessoais p INNER JOIN ${mes}_caixas c ON p.nordem=c.nordem INNER JOIN ${mes}_unidades u ON p.subom=u.unidade WHERE p.nordem=${nordem}`;
 
-    connection(ano).query(sql, (err, result, fields) => {
+    this.DB.mysqlConnection(ano).query(sql, (err, result, fields) => {
       if (err) {
         res.status(500).json(err);
       } else {         
