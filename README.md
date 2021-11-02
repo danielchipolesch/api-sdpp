@@ -34,8 +34,12 @@
 - [x] Projeto inicial
 - [x] Conexão com o BD
 - [x] Criação do endpoint que retorna os dados do contracheque em JSON
-- [ ] Arquitetura MVC
-- [ ] Loop para conexão em diferentes BD
+- [x] Arquitetura MVC
+- [x] Loop para conexão em diferentes BD
+- [ ] Gerar todos os contracheques do ano
+- [ ] Portal da SDPP
+- [ ] Utilizar o login único para acessar o portal da SDPP
+
 
 <h2 align="left" id="ideias">💡 Ideias</h2>
 

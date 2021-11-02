@@ -12,8 +12,9 @@ class Database{
 
       conn.connect((err) => {
         if(err){
-          console.error('Erro ao conectar ao BD: ' + err.stack);
+          console.error('Erro ao conectar ao BD: ' + err);
           return;
+          console.error('Erro ao conectar ao BD: ' + err.stack); // O .stack joga dados sensíveis no console 
         }
         console.log('Conectado com o id: ' + conn.threadId);
       })
@@ -21,7 +22,7 @@ class Database{
       return conn;
 
     } catch (error) {
-      console.error('Erro ao conectar ao BD: ' + error.stack);
+      console.error('Erro ao conectar ao BD: ' + error);
       return;
     }    
   }
