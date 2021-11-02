@@ -41,7 +41,7 @@ const options = {
 const specs = swaggerJsDoc(options);
 
 app.use('/api-sdpp', swaggerUI.serve, swaggerUI.setup(specs));
-app.use('/contracheques', routeContracheque);
+app.use('/contracheques/', routeContracheque);
 
 //Exceção criada para quando a rota chamada não for identificada
 app.use((req, res, next) => {

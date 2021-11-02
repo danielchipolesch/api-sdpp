@@ -1,4 +1,4 @@
-class BD{
+class Database{
   mysqlConnection(ano){
     const mysql = require('mysql');
     try {
@@ -19,6 +19,7 @@ class BD{
       })
 
       return conn;
+
     } catch (error) {
       console.error('Erro ao conectar ao BD: ' + error.stack);
       return;
@@ -26,4 +27,4 @@ class BD{
   }
 }
 
-module.exports = BD;
+module.exports = Database;

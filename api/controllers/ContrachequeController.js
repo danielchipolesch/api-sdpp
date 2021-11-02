@@ -1,23 +1,21 @@
 const ContrachequeModel = require('../models/ContrachequeModel');
 
-class ContrachequeController {
-
-  getContracheques = (req, res, next) => {
-    res.status(200).send({
-      mensagem: 'GET para retornar vários contracheques dentro da rota contracheque'
-    })
+class ContrachequePdfController {
+  
+  getDadosUmContracheque = async (req, res, next) => {
+    const params = req.params;
+    await ContrachequeModel.findOne(params, res);
+  }
+  
+  getUmContrachequePdf = async (req, res, next) => {
+    const params = req.params;
+    await ContrachequeModel.geraContrachequePdf(params, res);
   }
 
-  getUmContracheque = (req, res, next) => {
+  getTodosContrachequesAnoPdf = async (req, res, next) => {
     const params = req.params;
-    ContrachequeModel.findOne(params, res);
-  }
-
-  getContrachequePdf = (req, res, next) => {
-    const params = req.params;
-    ContrachequeModel.geraUmContrachequePdf(params, res);
+    await ContrachequeModel.geraTodosContrachequesAnoPdf(params, res);
   }
 }
 
-
-module.exports = new ContrachequeController;
+module.exports = new ContrachequePdfController;
