@@ -17,7 +17,13 @@ class ContrachequeModel {
       return res.status(400).json({
         "erro": "Parâmetro incorreto"
       });
-    }    
+    }
+    
+    if(ano < 1995 || ano > moment().format('YYYY')){
+      return res.status(400).json({
+        "erro": "Não existem dados para o ano requerido"
+      });
+    }
 
     if(!mes || mes.length != 3){
       return res.status(400).json({
@@ -31,15 +37,20 @@ class ContrachequeModel {
       });
     }
 
-    const sql = `SELECT p.tipo, p.posto, p.nordem, p.status, p.digito, p.ompag, p.nomeom AS nm_ompag, p.subom, p.dt, p.nposto, p.esp, p.nome AS nm_pessoa, p.ref, p.id, p.cpf, p.banco, p.agencia, p.cc, p.receita, p.despesa, p.liquido, p.anuenio, p.pasep, p.depir, p.depsf, p.quota, p.pm, p.funsa, p.isir, p.margem, c.discr, c.ordcx, c.caixa, c.perc, c.rec, c.desp, c.prazo, c.ir, u.codtabela, u.autonomia, u.filler1, u.nome AS nm_subom, u.sigla AS nm_sigla_subom, u.localidade, u.filler2 FROM ${mes}_pessoais p INNER JOIN ${mes}_caixas c ON p.nordem=c.nordem INNER JOIN ${mes}_unidades u ON p.subom=u.unidade WHERE p.nordem=${nordem}`;
+    try {
+      const sql = `SELECT p.tipo, p.posto, p.nordem, p.status, p.digito, p.ompag, p.nomeom AS nm_ompag, p.subom, p.dt, p.nposto, p.esp, p.nome AS nm_pessoa, p.ref, p.id, p.cpf, p.banco, p.agencia, p.cc, p.receita, p.despesa, p.liquido, p.anuenio, p.pasep, p.depir, p.depsf, p.quota, p.pm, p.funsa, p.isir, p.margem, c.discr, c.ordcx, c.caixa, c.perc, c.rec, c.desp, c.prazo, c.ir, u.codtabela, u.autonomia, u.filler1, u.nome AS nm_subom, u.sigla AS nm_sigla_subom, u.localidade, u.filler2 FROM ${mes}_pessoais p INNER JOIN ${mes}_caixas c ON p.nordem=c.nordem INNER JOIN ${mes}_unidades u ON p.subom=u.unidade WHERE p.nordem=${nordem}`;
 
     this.DB.mysqlConnection(ano).query(sql, (err, result, fields) => {
-      try {
-        res.status(200).json(result)
-      } catch (err) {
-        res.status(500).json(err);
+      if(result == undefined){
+        res.status(400).json({
+          "erro" : "Não foi possível conectar ao Banco de Dados"
+        })
       }
+      res.status(200).json(result)      
     })
+    } catch (err) {
+      res.status(500).json(err);
+    }
   }
 
   geraContrachequePdf(params, res){
@@ -51,7 +62,13 @@ class ContrachequeModel {
       return res.status(400).json({
         "erro": "Parâmetro incorreto"
       });
-    }    
+    }
+
+    if(ano < 1995 || ano > moment().format('YYYY')){
+      return res.status(400).json({
+        "erro": "Não existem dados para o ano requerido"
+      });
+    }
 
     if(!mes || mes.length != 3){
       return res.status(400).json({
@@ -224,7 +241,7 @@ class ContrachequeModel {
             author: '1º Ten Int CHIPOLESCH',
             subject: 'Gerador de contracheques da FAB em formato PDF',           
             },
-          watermark:  { text: cpf, color: 'black', opacity: 0.05, bold: true, italics: false },
+          // watermark:  { text: cpf, color: 'black', opacity: 0.05, bold: true, italics: false },
           // background: 'simple text',
           header: function(currentPage, pageCount, pageSize) {
             // you can apply any logic and return any valid pdfmake element        
@@ -264,7 +281,7 @@ class ContrachequeModel {
             { text: 'SUBDIRETORIA DE PAGAMENTO DE PESSOAL\n\n', decoration : 'underline', alignment : 'center', lineHeight: 1.3},
             // { text: 'google', link: 'http://fab.mil.br/conheca-seu-contracheque' },
             { 
-              layout: 'noBorders',
+              // layout: 'noBorders',
               table: 
               {
                 // headers are automatically repeated if the table spans over multiple pages
@@ -291,7 +308,7 @@ class ContrachequeModel {
                 },                
               },
             },
-            { text: `Contracheque emitido em ${moment().format('DD/MM/YYY')} às ${moment().format('HH:mm:ss')} h`, alignment: 'center'},
+            { text: `Contracheque emitido em ${moment().format('DD/MM/yyyy')} às ${moment().format('HH:mm:ss')} h`, alignment: 'center'},
             { qr: 'conheça seu contracheque', fit: '50', alignment: 'right' }
           ],
           styles: {
@@ -322,24 +339,38 @@ class ContrachequeModel {
     })
   }
 
-  geraTodosContrachequesAnoPdf(params, res){
-    const ano = params.ano;
-    
-    const nordem = params.nordem;
+  // geraTodosContrachequesAnoPdf(params, res){
+  //   const ano = params.ano;
+  //   const mes = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+  //   const nordem = params.nordem;
 
-    for (i = 1; i <= mes <= 12; i++){      
-      const sql = `SELECT p.tipo, p.posto, p.nordem, p.status, p.digito, p.ompag, p.nomeom AS nm_ompag, p.subom, p.dt, p.nposto, p.esp, p.nome AS nm_pessoa, p.ref, p.id, p.cpf, p.banco, p.agencia, p.cc, p.receita, p.despesa, p.liquido, p.anuenio, p.pasep, p.depir, p.depsf, p.quota, p.pm, p.funsa, p.isir, p.margem, c.discr, c.ordcx, c.caixa, c.perc, c.rec, c.desp, c.prazo, c.ir, u.codtabela, u.autonomia, u.filler1, u.nome AS nm_subom, u.sigla AS nm_sigla_subom, u.localidade, u.filler2 FROM ${mes}_pessoais p INNER JOIN ${mes}_caixas c ON p.nordem=c.nordem INNER JOIN ${mes}_unidades u ON p.subom=u.unidade WHERE p.nordem=${nordem}`;
+  //   var resultado = [];
+
+  //   for(let i = 0; i < mes.length; i++){
+      
+  //     var sql = `SELECT p.tipo, p.posto, p.nordem, p.status, p.digito, p.ompag, p.nomeom AS nm_ompag, p.subom, p.dt, p.nposto, p.esp, p.nome AS nm_pessoa, p.ref, p.id, p.cpf, p.banco, p.agencia, p.cc, p.receita, p.despesa, p.liquido, p.anuenio, p.pasep, p.depir, p.depsf, p.quota, p.pm, p.funsa, p.isir, p.margem, c.discr, c.ordcx, c.caixa, c.perc, c.rec, c.desp, c.prazo, c.ir, u.codtabela, u.autonomia, u.filler1, u.nome AS nm_subom, u.sigla AS nm_sigla_subom, u.localidade, u.filler2 FROM ${mes[i]}_pessoais p INNER JOIN ${mes[i]}_caixas c ON p.nordem=c.nordem INNER JOIN ${mes[i]}_unidades u ON p.subom=u.unidade WHERE p.nordem=${nordem}`;
            
-    }
-
-    this.DB.mysqlConnection(ano).query(sql, [i, j], (err, result, fields) => {
-      if(err){
-        res.status(500).json(err);
-      } else {
-        res.status(200).json(result);
-      }
-    })
-  }
+  //     this.DB.mysqlConnection(ano).query(sql, (err, result, fields) => {
+  //       if(result == undefined){
+  //         var msg = `Não existe contracheque para o mês de ${mes[i]}`
+  //         resultado.push(msg)
+          
+  //         // res.status(400).json({
+  //         //   "erro" : "Não foi possível conectar ao Banco de Dados"
+  //         // })
+          
+  //       }
+        
+  //       // result++;
+  //       // return result;
+  //       // res.status(200).json(result);
+        
+  //       resultado.push(result);
+  //     });
+  //   }
+  //   res.status(200).json(resultado);
+  //   this.DB.mysqlConnection(ano).end();
+  // }
 }
 
 module.exports = new ContrachequeModel;
