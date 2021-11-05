@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const swaggerUI = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 
-const routeContracheque = require('./api/routes/contrachequeRoute');
+const routeContracheque = require('./api/routes/routeContracheque');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false })); //apenas dados simples

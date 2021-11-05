@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const ContrachequeController = require('../controllers/ContrachequeController');
+const ContrachequeController = require('../controllers/Contracheque');
 
 /**
  * @swagger
