@@ -7,6 +7,30 @@ class ContrachequeModel {
   constructor(){
     this.DB = new Connection;
   }
+
+  errorPdfHandler(res){
+    var fonts = {
+      Times: {
+        normal: 'Times-Roman',
+        bold: 'Times-Bold',
+        italics: 'Times-Italic',
+        bolditalics: 'Times-BoldItalic'
+      }
+    };
+    var printer = new PdfPrinter(fonts);
+    var docDefinition = {
+      content: [
+        {text: 'Não existem dados para o parâmetro informado'}
+      ],
+      defaultStyle: {
+        font: 'Times'
+      },
+    };
+    
+    var pdfDoc = printer.createPdfKitDocument(docDefinition);
+    pdfDoc.pipe(res);
+    pdfDoc.end();
+  }
   
   findOne(params, res) {
     const ano = params.ano;
@@ -58,35 +82,15 @@ class ContrachequeModel {
     const mes = (params.mes).toLowerCase();
     const nordem = params.nordem;
         
-    if(!ano || ano.length != 4 || !parseInt(ano)){
-      return res.status(400).json({
-        "erro": "Parâmetro incorreto"
-      });
-    }
-
-    if(ano < 1995 || ano > moment().format('YYYY')){
-      return res.status(400).json({
-        "erro": "Não existem dados para o ano requerido"
-      });
-    }
-
-    if(!mes || mes.length != 3){
-      return res.status(400).json({
-        "erro": "Parâmetro incorreto"
-      });
-    }
-
-    if(!nordem || nordem.length != 6 || !parseInt(nordem)){
-      return res.status(400).json({
-        "erro": "Parâmetro incorreto"
-      });
+    if(!ano || !mes || !nordem){
+      this.errorPdfHandler(res);
     }
 
     const sql = `SELECT p.tipo, p.posto, p.nordem, p.status, p.digito, p.ompag, p.nomeom AS nm_ompag, p.subom, p.dt, p.nposto, p.esp, p.nome AS nm_pessoa, p.ref, p.id, p.cpf, p.banco, p.agencia, p.cc, p.receita, p.despesa, p.liquido, p.anuenio, p.pasep, p.depir, p.depsf, p.quota, p.pm, p.funsa, p.isir, p.margem, c.discr, c.ordcx, c.caixa, c.perc, c.rec, c.desp, c.prazo, c.ir, u.codtabela, u.autonomia, u.filler1, u.nome AS nm_subom, u.sigla AS nm_sigla_subom, u.localidade, u.filler2 FROM ${mes}_pessoais p INNER JOIN ${mes}_caixas c ON p.nordem=c.nordem INNER JOIN ${mes}_unidades u ON p.subom=u.unidade WHERE p.nordem=${nordem}`;
 
     this.DB.mysqlConnection(ano).query(sql, (err, result, fields) => {
       if (err) {
-        res.status(500).json(err);
+        this.errorPdfHandler(res);
       } else {
         const {nordem, digito, cpf, ompag, nm_ompag, subom, nm_sigla_subom, dt, nposto, esp, nm_pessoa, ref, id, banco, agencia, cc, receita, despesa, liquido, anuenio, pasep, depir, depsf, quota, pm, funsa, isir, status} = result[0];
                         
@@ -236,6 +240,8 @@ class ContrachequeModel {
         var printer = new PdfPrinter(fonts);        
         
         var docDefinition = {
+          pageSize: 'A4',
+          pageOrientation: 'portrait',
           info: {
             title: `SARAM ${nordem}-${digito}`,
             author: '1º Ten Int CHIPOLESCH',
@@ -243,7 +249,7 @@ class ContrachequeModel {
             },
           // watermark:  { text: cpf, color: 'black', opacity: 0.05, bold: true, italics: false },
           // background: 'simple text',
-          header: function(currentPage, pageCount, pageSize) {
+          header: (currentPage, pageCount, pageSize) => {
             // you can apply any logic and return any valid pdfmake element        
             return [
               { text: 'simple text', alignment: (currentPage % 2) ? 'left' : 'right' },
@@ -325,7 +331,10 @@ class ContrachequeModel {
           },
           defaultStyle: {
             font: 'Times'
-          }
+          },
+          // pageBreakBefore: function(currentNode, followingNodesOnPage, nodesOnNextPage, previousNodesOnPage) {
+          //   return currentNode.headlineLevel === 1 && followingNodesOnPage.length === 0;
+          // }
         };
         
         var options = {
