@@ -161,6 +161,8 @@ class ContrachequeModel {
     var docDefinition = {
       pageSize: 'A4',
       pageOrientation: 'portrait',
+      // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
+      // pageMargins: [ 40, 60, 40, 40 ],
       info: {
         title: `SARAM ${nordem}-${digito}`,
         author: '1º Ten Int CHIPOLESCH',
@@ -168,21 +170,22 @@ class ContrachequeModel {
         },
       // watermark:  { text: cpf, color: 'black', opacity: 0.05, bold: true, italics: false },
       // background: 'simple text',
-      header: (currentPage, pageCount, pageSize) => {
-        // you can apply any logic and return any valid pdfmake element        
-        return [
-          { text: 'simple text', alignment: (currentPage % 2) ? 'left' : 'right' },
-          { canvas: [ { type: 'rect', x: 170, y: 32, w: pageSize.width - 170, h: 40 } ] }
-        ]
-      },
-      footer: {
-        columns: [
-          { text: 'Left part', alignment: 'left' },
-          { text: 'center part', alignment: 'center' },
-          { text: 'Right part', alignment: 'right' },
-          // (currentPage, pageCount) => { return `[${currentPage.toString()}/${pageCount}]`}
-        ]
-      },
+      // header: (currentPage, pageCount, pageSize) => {
+      //   // you can apply any logic and return any valid pdfmake element        
+      //   return [
+      //     { text: 'simple text', alignment: (currentPage % 2) ? 'left' : 'right' },
+      //     { canvas: [ { type: 'rect', x: 170, y: 32, w: pageSize.width - 170, h: 40 } ] }
+      //   ]
+      // },
+      footer: { text: `Contracheque emitido em ${moment().format('DD/MM/yyyy')} às ${moment().format('HH:mm:ss')} h`, alignment: 'center'},
+      // {
+      //   columns: [
+      //     { text: 'Left part', alignment: 'left' },
+      //     { text: `Contracheque emitido em ${moment().format('DD/MM/yyyy')} às ${moment().format('HH:mm:ss')} h`, alignment: 'center'},
+      //     { text: 'Right part', alignment: 'right' },
+      //     (currentPage, pageCount) => { return `[${currentPage.toString()}/${pageCount}]`}
+      //   ]
+      // },
       content: [
         { layout: 'noBorders',
           table:
@@ -211,7 +214,7 @@ class ContrachequeModel {
           {
             // headers are automatically repeated if the table spans over multiple pages
             // you can declare how many rows should be treated as headers
-            headerRows: 1,
+            headerRows: 0,
             widths: [ '*', 'auto', 'auto', 'auto', 'auto', 80, 60, 20, 60, 20 ],
             body: dado
           },
@@ -233,8 +236,8 @@ class ContrachequeModel {
             },                
           },
         },
-        { text: `Contracheque emitido em ${moment().format('DD/MM/yyyy')} às ${moment().format('HH:mm:ss')} h`, alignment: 'center'},
-        { qr: 'conheça seu contracheque', fit: '50', alignment: 'right' }
+        
+        { qr: 'conheça seu contracheque', fit: '50', alignment: 'right', margin: [0, 5, 0, 0] }
       ],
       styles: {
         header: {
