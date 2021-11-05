@@ -8,11 +8,11 @@
    * [Features](#features)
    * [Ideias](#ideias)
    * [Aplicação](#aplicacao)
-      * [Pré Requisitos](#pre-requisitos)
+<!--       * [Pré Requisitos](#pre-requisitos)
       * [Local files](#local-files)
       * [Remote files](#remote-files)
       * [Multiple files](#multiple-files)
-      * [Combo](#combo)
+      * [Combo](#combo) -->
    * [Tests](#testes)
    * [Tecnologias](#tecnologias)
    * [Contribuição](#contribuicao)
@@ -63,6 +63,10 @@ v14.16.1
 $ npm -v
 v6.14.12 (já vem instalado junto com o node)
 ```
+<h2 align="left" id="autor">🧑 Licença</h2>
+
+Daniel Chipolesch
+
 <h2 align="left" id="licenca">📝 Licença</h2>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
