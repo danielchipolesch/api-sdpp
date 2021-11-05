@@ -8,11 +8,11 @@
    * [Features](#features)
    * [Ideias](#ideias)
    * [Aplicação](#aplicacao)
-      * [Pré Requisitos](#pre-requisitos)
+   <!--  * [Pré Requisitos](#pre-requisitos)
       * [Local files](#local-files)
       * [Remote files](#remote-files)
       * [Multiple files](#multiple-files)
-      * [Combo](#combo)
+      * [Combo](#combo) -->
    * [Tests](#testes)
    * [Tecnologias](#tecnologias)
    * [Contribuição](#contribuicao)
@@ -26,7 +26,7 @@
 <p align="left">Descrição do Projeto</p>
 
 <h2 align="left"> 
-	🚧  API para buscar contracheque 🚀 Em construção...  🚧
+	🚧  API para gerar contracheque em PDF 🚀 Em construção...  🚧
 </h2>
 
 <h2 align="left" id="features">🧭 Features</h2>
@@ -37,20 +37,24 @@
 - [x] Arquitetura MVC
 - [x] Loop para conexão em diferentes BD
 - [ ] Gerar todos os contracheques do ano
-- [ ] Portal da SDPP
-- [ ] Utilizar o login único para acessar o portal da SDPP
 
 
 <h2 align="left" id="ideias">💡 Ideias</h2>
 
-- [ ] Centralização das API da SDPP
-- [ ] Cadastro de cliente
+- [ ] Portal da SDPP
+- [ ] Gestão de usuários
+- [ ] Centralização de todos os sistemas de aplicativos da SDPP
 
 <h2 align="left" id="tecnologias">🛠 Tecnologias</h2>
 
 ![image](https://badges.aleen42.com/src/javascript.svg) ![image](https://badges.aleen42.com/src/node.svg)
 
+<h2 align="left" id="aplicacao">🛶 Aplicação</h2>
+
 ```
+# Navegar até o diretório raiz do projeto e executar o comando:
+$ npm install
+
 # Para saber a versão do Node.js
 $ node -v
 v14.16.1
@@ -59,6 +63,10 @@ v14.16.1
 $ npm -v
 v6.14.12 (já vem instalado junto com o node)
 ```
+<h2 align="left" id="autor">🧑 Autor</h2>
+
+<a href='https://github.com/chipoleschdaca' target="_blank">Daniel Chipolesch</a>
+
 <h2 align="left" id="licenca">📝 Licença</h2>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
