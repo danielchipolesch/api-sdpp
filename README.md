@@ -8,7 +8,7 @@
    * [Features](#features)
    * [Ideias](#ideias)
    * [Aplicação](#aplicacao)
-<!--       * [Pré Requisitos](#pre-requisitos)
+   <!--  * [Pré Requisitos](#pre-requisitos)
       * [Local files](#local-files)
       * [Remote files](#remote-files)
       * [Multiple files](#multiple-files)
@@ -52,7 +52,7 @@
 <h2 align="left" id="aplicacao">🛶 Aplicação</h2>
 
 ```
-# Navegar até o diretório raiz do projeto a inserir o comando:
+# Navegar até o diretório raiz do projeto e executar o comando:
 $ npm install
 
 # Para saber a versão do Node.js
