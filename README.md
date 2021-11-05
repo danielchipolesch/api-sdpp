@@ -26,7 +26,7 @@
 <p align="left">Descrição do Projeto</p>
 
 <h2 align="left"> 
-	🚧  API para buscar contracheque 🚀 Em construção...  🚧
+	🚧  API para gerar contracheque em PDF 🚀 Em construção...  🚧
 </h2>
 
 <h2 align="left" id="features">🧭 Features</h2>
@@ -37,20 +37,24 @@
 - [x] Arquitetura MVC
 - [x] Loop para conexão em diferentes BD
 - [ ] Gerar todos os contracheques do ano
-- [ ] Portal da SDPP
-- [ ] Utilizar o login único para acessar o portal da SDPP
 
 
 <h2 align="left" id="ideias">💡 Ideias</h2>
 
-- [ ] Centralização das API da SDPP
-- [ ] Cadastro de cliente
+- [ ] Portal da SDPP
+- [ ] Gestão de usuários
+- [ ] Centralização de todos os sistemas de aplicativos da SDPP
 
 <h2 align="left" id="tecnologias">🛠 Tecnologias</h2>
 
 ![image](https://badges.aleen42.com/src/javascript.svg) ![image](https://badges.aleen42.com/src/node.svg)
 
+<h2 align="left" id="aplicacao">🛶 Aplicação</h2>
+
 ```
+# Navegar até o diretório raiz do projeto a inserir o comando:
+$ npm install
+
 # Para saber a versão do Node.js
 $ node -v
 v14.16.1
