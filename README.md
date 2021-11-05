@@ -65,7 +65,7 @@ v6.14.12 (já vem instalado junto com o node)
 ```
 <h2 align="left" id="autor">🧑 Autor</h2>
 
-<a href='https://github.com/chipoleschdaca'>Daniel Chipolesch</a>
+<a href='https://github.com/chipoleschdaca' target="_blank">Daniel Chipolesch</a>
 
 <h2 align="left" id="licenca">📝 Licença</h2>
 
