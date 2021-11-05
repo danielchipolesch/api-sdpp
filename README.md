@@ -63,9 +63,9 @@ v14.16.1
 $ npm -v
 v6.14.12 (já vem instalado junto com o node)
 ```
-<h2 align="left" id="autor">🧑 Licença</h2>
+<h2 align="left" id="autor">🧑 Autor</h2>
 
-Daniel Chipolesch
+<a href='https://github.com/chipoleschdaca'>Daniel Chipolesch</a>
 
 <h2 align="left" id="licenca">📝 Licença</h2>
 
