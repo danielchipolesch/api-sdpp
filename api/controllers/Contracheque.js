@@ -10,8 +10,7 @@ class ContrachequePdfController {
   }
   
   getUmContrachequePdf = async (req, res, next) => {
-    const params = req.params;
-    console.log(req.params)
+    const params = req.params;    
     await ContrachequeModel.findOne(params)
       .then(dadoGerado => ContrachequeModel.montaContrachequePdf(dadoGerado, res))
       .catch(erros => ContrachequeModel.montaErroContrachequePdf(res));
