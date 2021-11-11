@@ -104,6 +104,7 @@ class ContrachequeModel {
         { text : 'LÍQUIDO (R$)', colSpan: 2, style: 'header', border: [true, true, true, false]},
         { text : '', style: 'header', border: [true, true, true, false]},
       ];
+      
       var restante2 =
       [ 
         { text : banco, alignment : 'center', border: [true, false, true, true]},
@@ -117,6 +118,7 @@ class ContrachequeModel {
         { text : liquido, colSpan: 2, alignment : 'center', bold:true, border: [true, false, true, true]},
         { text : '', border: [true, true, true, false]},
       ];
+
       var restante3 =
       [ 
         { text : 'ANUÊNIO', style: 'header', border: [true, false, true, false]},
@@ -128,9 +130,9 @@ class ContrachequeModel {
         { text : 'P/G FUNSA', style: 'header', border: [true, false, true, false]},
         { text : 'ISENTO IR', colSpan: 2, style: 'header', border: [true, false, true, false]},
         { text : '', style: 'header', border: [true, false, true, false]},
-        { text : 'SIT', style: 'header', border: [true, false, true, false]},
-        
+        { text : 'SIT', style: 'header', border: [true, false, true, false]},        
       ];
+
       var restante4 =
       [ 
         { text : anuenio, style: 'lines', border: [true, false, true, true]},
@@ -142,8 +144,7 @@ class ContrachequeModel {
         { text : funsa, style: 'lines', border: [true, false, true, true]},
         { text : isir, colSpan: 2, style: 'lines', border: [true, false, true, true]},
         { text : '', style: 'lines', border: [true, false, true, true]}, 
-        { text : status, style: 'lines', border: [true, false, true, true]},
-        
+        { text : status, style: 'lines', border: [true, false, true, true]},        
       ];
     dado.push(restante, restante2, restante3, restante4);
     
@@ -235,8 +236,7 @@ class ContrachequeModel {
               return (i === node.table.widths.length);
             },                
           },
-        },
-        
+        },        
         { qr: 'conheça seu contracheque', fit: '50', alignment: 'right', margin: [0, 5, 0, 0] }
       ],
       styles: {
