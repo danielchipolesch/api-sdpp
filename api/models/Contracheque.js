@@ -201,14 +201,12 @@ class ContrachequeModel {
               ],
             ]
           }, 
-        },
-        
+        },        
         { text: 'MINISTÉRIO DA DEFESA', bold : true, alignment : 'center', lineHeight: 1.1},
         { text: 'COMANDO DA AERONÁUTICA', alignment : 'center', lineHeight: 1.1},
         { text: 'SECRETARIA DE ECONOMIA, FINANÇAS E ADMINISTRAÇÃO DA AERONÁUTICA', decoration : 'underline', alignment : 'center', lineHeight: 1.3},
         { text: 'DIRETORIA DE ADMINISTRAÇÃO DA AERONÁUTICA', decoration : 'underline', alignment : 'center', lineHeight: 1.3},
         { text: 'SUBDIRETORIA DE PAGAMENTO DE PESSOAL\n\n', decoration : 'underline', alignment : 'center', lineHeight: 1.3},
-        // { text: 'google', link: 'http://fab.mil.br/conheca-seu-contracheque' },
         { 
           // layout: 'noBorders',
           table: 
@@ -236,8 +234,9 @@ class ContrachequeModel {
               return (i === node.table.widths.length);
             },                
           },
-        },        
-        { qr: 'conheça seu contracheque', fit: '50', alignment: 'right', margin: [0, 5, 0, 0] }
+        },
+        { text: "Conheça seu contracheque através do código QR abaixo", alignment: 'center', margin: [0, 5, 0, 0] },
+        { qr: 'https://www.google.com', fit: '50', alignment: 'center', margin: [0, 5, 0, 0] },
       ],
       styles: {
         header: {
@@ -280,7 +279,7 @@ class ContrachequeModel {
     var printer = new PdfPrinter(fonts);
     var docDefinition = {
       content: [
-        {text: 'Não existem dados para o parâmetro informado', fontSize: 20}
+        {text: 'Não existem dados para o parâmetro informado', fontSize: 20, alignment: 'center'}
       ],
       defaultStyle: {
         font: 'Times'
