@@ -1,9 +1,8 @@
-const Connection = require('./Conn');
+const connection = require('./Conn');
 
-const queryExecute = (query, params = '', ano) => {
-  const DB = new Connection;  
+const queryExecute = (query, params = '') => {
   return new Promise((resolve, reject) => {
-    DB.mysqlConnection(ano).query(query, params, (err, result, fields) => {
+    connection.query(query, params, (err, result, fields) => {
       if(err){
         reject(err);
       } else {
