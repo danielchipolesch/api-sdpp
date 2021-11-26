@@ -40,6 +40,6 @@ router.get('/:ano/:mes/:nordem/dados', ContrachequeController.getDadosUmContrach
 
 router.get('/:ano/:mes/:nordem/pdf', ContrachequeController.getUmContrachequePdf);
 
-router.get('/:ano/:nordem/pdf', ContrachequeController.getTodosContrachequesAnoPdf);
+// router.get('/:ano/:nordem/pdf', ContrachequeController.getTodosContrachequesAnoPdf);
 
 module.exports = router;

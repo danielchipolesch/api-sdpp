@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const swaggerUI = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 
+const contrachequeModel = require('./api/models/Contracheque')
 const routeContracheque = require('./api/routes/routeContracheque');
 
 app.use(morgan('dev'));
@@ -45,9 +46,8 @@ app.use('/contracheques/', routeContracheque);
 
 //Exceção criada para quando a rota chamada não for identificada
 app.use((req, res, next) => {
-  const erro = new Error('Rota não encontrada');
-  erro.status = 404;
-  next(erro);
+  contrachequeModel.montaErroContrachequePdf(res.status(404));  
+  next();
 });
 
 //Exceção criada para quando qualquer erro

@@ -1,6 +1,6 @@
 const ContrachequeModel = require('../models/Contracheque');
 
-class ContrachequePdfController {
+class ContrachequeController {
   
   getDadosUmContracheque = async (req, res, next) => {
     const params = req.params;
@@ -13,7 +13,7 @@ class ContrachequePdfController {
     const params = req.params;    
     await ContrachequeModel.findOne(params)
       .then(dadoGerado => ContrachequeModel.montaContrachequePdf(dadoGerado, res))
-      .catch(erros => ContrachequeModel.montaErroContrachequePdf(res));
+      .catch(erros => ContrachequeModel.montaErroContrachequePdf(res.status(404)));
   }
 
   getTodosContrachequesAnoPdf = async (req, res, next) => {
@@ -22,4 +22,4 @@ class ContrachequePdfController {
   }
 }
 
-module.exports = new ContrachequePdfController;
+module.exports = new ContrachequeController;
