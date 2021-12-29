@@ -36,9 +36,11 @@ const ContrachequeController = require('../controllers/Contracheque');
  *          nordem: "123456"
  */
  
-router.get('/:ano/:mes/:nordem/dados', ContrachequeController.getDadosUmContracheque);
+router.get('/:ano/:mes/:nordem/dados', ContrachequeController.getDadosUmContrachequePorSaram);
 
-router.get('/:ano/:mes/:nordem/pdf', ContrachequeController.getUmContrachequePdf);
+router.get('/:ano/:nordem/dados', ContrachequeController.getDadosTodosContrachequesAnoPorPessoa);
+
+router.get('/:ano/:mes/:nordem/pdf', ContrachequeController.getUmContrachequePdfPorSaram);
 
 // router.get('/:ano/:nordem/pdf', ContrachequeController.getTodosContrachequesAnoPdf);
 
