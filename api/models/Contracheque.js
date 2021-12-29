@@ -10,6 +10,11 @@ class ContrachequeModel {
     return (result);
   }
 
+  async findAll(params){
+    const result = Repository.findAllByYear(params);    
+    return (result);
+  }
+
   montaContrachequePdf(result, res){
     const {nordem, digito, cpf, ompag, nm_ompag, subom, nm_sigla_subom, dt, nposto, esp, nm_pessoa, ref, id, banco, agencia, cc, receita, despesa, liquido, anuenio, pasep, depir, depsf, quota, pm, funsa, isir, status} = result[0];
                         
@@ -91,7 +96,7 @@ class ContrachequeModel {
       );
       dado.push(dadoRow);
     })
-    var restante =
+    dado.push(
       [ 
         { text : 'BANCO', style: 'header', border: [true, true, true, false]},
         { text : 'AGÊNCIA', style: 'header', border: [true, true, true, false]},
@@ -103,9 +108,7 @@ class ContrachequeModel {
         { text : '', style: 'header', border: [true, true, true, false]},
         { text : 'LÍQUIDO (R$)', colSpan: 2, style: 'header', border: [true, true, true, false]},
         { text : '', style: 'header', border: [true, true, true, false]},
-      ];
-      
-      var restante2 =
+      ],
       [ 
         { text : banco, alignment : 'center', border: [true, false, true, true]},
         { text : agencia, alignment : 'center', border: [true, false, true, true]},
@@ -117,9 +120,7 @@ class ContrachequeModel {
         { text : '', border: [true, true, true, false]},
         { text : liquido, colSpan: 2, alignment : 'center', bold:true, border: [true, false, true, true]},
         { text : '', border: [true, true, true, false]},
-      ];
-
-      var restante3 =
+      ],
       [ 
         { text : 'ANUÊNIO', style: 'header', border: [true, false, true, false]},
         { text : 'PASEP', style: 'header', border: [true, false, true, false]},
@@ -131,9 +132,7 @@ class ContrachequeModel {
         { text : 'ISENTO IR', colSpan: 2, style: 'header', border: [true, false, true, false]},
         { text : '', style: 'header', border: [true, false, true, false]},
         { text : 'SIT', style: 'header', border: [true, false, true, false]},        
-      ];
-
-      var restante4 =
+      ],
       [ 
         { text : anuenio, style: 'lines', border: [true, false, true, true]},
         { text : pasep, style: 'lines', border: [true, false, true, true]},
@@ -145,8 +144,9 @@ class ContrachequeModel {
         { text : isir, colSpan: 2, style: 'lines', border: [true, false, true, true]},
         { text : '', style: 'lines', border: [true, false, true, true]}, 
         { text : status, style: 'lines', border: [true, false, true, true]},        
-      ];
-    dado.push(restante, restante2, restante3, restante4);
+      ]
+    );
+    // dado.push(restante);
     
     var fonts = {
       Times: {
