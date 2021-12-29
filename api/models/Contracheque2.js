@@ -6,9 +6,15 @@ const pdf = require('html-pdf');
 
 class ContrachequeModel {
   
+    
   async findOne(params){
-    const result = await Repository.findOne(params);
-    return (result);
+    const result = await Repository.findOneContrachequeForOnePersonPerMonth(params);
+    return result;
+  }
+
+  async findAll(params){
+    const result = await Repository.findAllContrachequesForOnePersonByYear(params);
+    return result;
   }
 
   montaContrachequePdf(result, res){
@@ -51,13 +57,13 @@ class ContrachequeModel {
           <tbody>
             <tr>
               <td align="left" style="border: none;">
-                <img src="./src/img/DOM-SEFA.png" alt="" style="width: 49.58px; height: 60px">
+                <img src="../src/img/DOM-SEFA.png" alt="" style="width: 49.58px; height: 60px">
               </td>
               <td align="center" style="border: none;">
-                <img src="./src/img/gladio.png" alt="" style="width: 82.19px; height: 60px;">
+                <img src="../src/img/gladio.png" alt="" style="width: 82.19px; height: 60px;">
               </td>
               <td align="right" style="border: none;">
-                <img src="./src/img/DOM-DIRAD.png" alt="" style="width: 49.58px; height: 60px;">
+                <img src="../src/img/DOM-DIRAD.png" alt="" style="width: 49.58px; height: 60px;">
               </td>
             </tr>        
           </tbody>
