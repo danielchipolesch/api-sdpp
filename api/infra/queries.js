@@ -1,15 +1,13 @@
 const connection = require('./Conn');
 
-const queryExecute = (query, params = '') => {
+module.exports = (query, params = '') => {
   return new Promise((resolve, reject) => {
-    connection.query(query, params, (err, result, fields) => {
-      if(err){
-        reject(err);
-      } else {
+    connection.query(query, params, (err, result, _fields) => {
+      try {
         resolve(result);
+      } catch (error) {
+        reject(error);
       }
     })
   })
 }
-
-module.exports = queryExecute;
