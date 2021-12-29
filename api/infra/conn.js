@@ -4,8 +4,7 @@ const conn = mysql.createConnection({
   host: 'localhost',
   port: '3306',
   user: 'root',
-  password: '123456',
-  // database: `contracheque_${ano}`
+  password: '123456',  
 });
 
 conn.connect(function(err) {
