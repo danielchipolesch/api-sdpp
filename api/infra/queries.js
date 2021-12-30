@@ -7,7 +7,7 @@ module.exports = (query, params = '') => {
         resolve(result);
       } catch (error) {
         reject(error);
-      }
+      }      
     })
   })
 }
