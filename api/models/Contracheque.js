@@ -1,18 +1,18 @@
 const PdfPrinter = require('pdfmake');
 const moment = require('moment');
-const Repository = require('../repositories/Contracheque')
+const Repository = require('../repositories/Contracheque');
 
 
 class ContrachequeModel {
   
   async findOne(params){
-    const result = await Repository.findOne(params);
-    return (result);
+    const result = await Repository.findOneContrachequeForOnePersonPerMonth(params);
+    return result;
   }
 
   async findAll(params){
-    const result = Repository.findAllByYear(params);    
-    return (result);
+    const result = await Repository.findAllContrachequesForOnePersonByYear(params);
+    return result;
   }
 
   montaContrachequePdf(result, res){
