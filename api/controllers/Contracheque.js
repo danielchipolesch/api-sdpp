@@ -2,23 +2,25 @@ const ContrachequeModel = require('../models/Contracheque');
 
 class ContrachequeController {
   
-  getDadosUmContracheque = async (req, res, next) => {
+  getDadosUmContrachequePorSaram = async (req, res, next) => {
     const params = req.params;
     await ContrachequeModel.findOne(params)
       .then(dadoGerado => res.status(200).json(dadoGerado))
-      .catch(erros => res.status(400).json(erros));
+      .catch(erros => res.status(400).json({"message": "Parâmetro inválido"}));
   }
   
-  getUmContrachequePdf = async (req, res, next) => {
+  getUmContrachequePdfPorSaram = async (req, res, next) => {
     const params = req.params;    
     await ContrachequeModel.findOne(params)
       .then(dadoGerado => ContrachequeModel.montaContrachequePdf(dadoGerado, res))
       .catch(erros => ContrachequeModel.montaErroContrachequePdf(res.status(404)));
   }
 
-  getTodosContrachequesAnoPdf = async (req, res, next) => {
+  getDadosTodosContrachequesAnoPorPessoa = async (req, res, next) => {
     const params = req.params;
-    await ContrachequeModel.geraTodosContrachequesAnoPdf(params, res);
+    await ContrachequeModel.findAll(params)
+      .then(dadoGerado => res.status(200).json(dadoGerado))
+      .catch(erros => res.status(400).json({"message": "Parâmetro inválido"}));      
   }
 }
 
