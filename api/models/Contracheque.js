@@ -6,7 +6,7 @@ const Repository = require('../repositories/Contracheque');
 class ContrachequeModel {
   
   async findOne(params){
-    const result = await Repository.findOneContrachequeForOnePersonPerMonth(params);
+    const result = await Repository.findOneContrachequeForOnePersonPerMonth(params);    
     return result;
   }
 
@@ -16,8 +16,9 @@ class ContrachequeModel {
   }
 
   montaContrachequePdf(result, res){
-    const {nordem, digito, cpf, ompag, nm_ompag, subom, nm_sigla_subom, dt, nposto, esp, nm_pessoa, ref, id, banco, agencia, cc, receita, despesa, liquido, anuenio, pasep, depir, depsf, quota, pm, funsa, isir, status} = result[0];
-                        
+    
+    const {nordem, digito, cpf, ompag, nm_ompag, subom, nm_sigla_subom, dt, nposto, esp, nm_pessoa, ref, id, banco, agencia, cc, receita, despesa, liquido, anuenio, pasep, depir, depsf, quota, pm, funsa, isir, status} = result.pessoa[0];    
+
     var dado = [
       [ 
         { text : 'MATRÍCULA', style: 'header', border: [true, true, true, false]},
@@ -80,7 +81,7 @@ class ContrachequeModel {
         { text : 'IR', style: 'header', border: [true, false, true, false]},
       ]
     ]
-    result.forEach((result) => {
+    result.contracheque.forEach(result => {
       var dadoRow = [];
       dadoRow.push(
         { text : result.discr, colSpan: 2, alignment : 'left', border: [true, false, true, false]},
