@@ -2,8 +2,6 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const swaggerUI = require('swagger-ui-express');
-const swaggerJsDoc = require('swagger-jsdoc');
 
 const contrachequeModel = require('./api/models/Contracheque')
 const routeContracheque = require('./api/routes/routeContracheque');
@@ -21,27 +19,6 @@ app.use((req, res, next) => {
   next();
 })
 
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "API SDPP",
-      version: "1.0.0",
-      description: "Inserir uma descrição aqui"
-    },
-    servers: [
-      {
-        url: "http://localhost:3000",
-        description: "SDPP"
-      }
-    ]    
-  },
-  apis: ["./api/routes/*.js"]
-};
-
-const specs = swaggerJsDoc(options);
-
-app.use('/api-sdpp', swaggerUI.serve, swaggerUI.setup(specs));
 app.use('/contracheques/', routeContracheque);
 
 //Exceção criada para quando a rota chamada não for identificada
