@@ -18,6 +18,8 @@ services:
     volumes:    
       - db-contracheque:/var/lib/mysql
       - ./db-dev/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - mysql-compose-network
 
   backend-api-sdpp:
     build: .
@@ -36,4 +38,10 @@ services:
     volumes:
       - ./:/api-sdpp
     depends_on:
-      - db 
+      - db
+    networks:
+      - mysql-compose-network
+
+networks: 
+  mysql-compose-network:
+    driver: bridge
