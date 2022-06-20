@@ -1,26 +1,29 @@
 version: "3.8"
-volumes:
-  db-contracheque:
+# volumes:
+#   db-contracheque:
 
 services:
-  db:
-    image: mysql:5.7
-    container_name: mysql-v5.7-container
-    command: --default-authentication-plugin=mysql_native_password
-    # restart: always
-    environment:
-      # - MYSQL_ROOT_HOST=localhost
-      # - MYSQL_USER=root
-      - MYSQL_ROOT_PASSWORD=123456
-      # - MYSQL_DATABASE=contracheque_2021
-    ports:
-      - "3306:3306"
-    volumes:    
-      - db-contracheque:/var/lib/mysql
-      - ./db-dev/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
-    networks:
-      - mysql-compose-network
-
+  # db:
+  #   image: mysql:5.7
+  #   container_name: mysql-v5.7-container
+  #   # command: --default-authentication-plugin=mysql_native_password
+  #   # restart: always
+  #   environment:
+  #     # - MYSQL_ROOT_HOST=localhost
+  #     # - MYSQL_USER=root
+  #     - MYSQL_ROOT_PASSWORD=123456
+  #     # - MYSQL_DATABASE=contracheque_2021
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:    
+  #     - db-contracheque:/var/lib/mysql
+  #     - /opt/lampp/var/mysql:/docker-entrypoint-initdb.d
+  #     # - /opt/lampp/var/mysql:/var/lib/mysql
+  #     # - db-contracheque:/var/lib/mysql
+  #     # - ./db-dev/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+  #   networks:
+  #     - mysql-compose-network
+         
   backend-api-sdpp:
     build: .
     container_name: api-sdpp
@@ -37,8 +40,8 @@ services:
       - "3000:3000"
     volumes:
       - ./:/api-sdpp
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     networks:
       - mysql-compose-network
 
